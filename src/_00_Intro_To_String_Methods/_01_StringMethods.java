@@ -1,5 +1,6 @@
 package _00_Intro_To_String_Methods;
 
+import java.util.Arrays;
 import java.util.Base64;
 
 /*
@@ -34,13 +35,21 @@ public class _01_StringMethods {
 
     // Given Strings s1 and s2, return the longer String
     public static String longerString(String s1, String s2) {
-        return null;
+    	if (s1.length() > s2.length()) {
+        return s1;
+    	}
+    	else {
+    		return s2;
+    	}
     }
 
     // If String s contains the word "underscores", change all of the spaces
     // to underscores
     public static String formatSpaces(String s) {
-        return null;
+    	if (s.contains("underscores")) {
+    		s.replace(' ','_');
+    	}
+        return s;
     }
 
     // Return the name of the person whose LAST name would appear first if they
@@ -48,7 +57,28 @@ public class _01_StringMethods {
     // You cannot assume there are no extra spaces around the name, but you can
     // assume there is only one space between the first and last name
     public static String lineLeader(String s1, String s2, String s3) {
-        return null;
+    	String[] name1 = s1.split(" ");
+    	String[] name2 = s2.split(" ");
+    	String[] name3 = s3.split(" ");
+    	String[] names = new String[3];
+    	names[0] = name1[1];
+    	names[1] = name2[1];
+    	names[2] = name3[1];
+    	String total = "";
+    	
+    	Arrays.sort(names);
+
+    	System.out.println(names[0] + names[1] + names[2]);
+    	if (name1[1].equals(names[0])) {
+    		total = s1;
+    	}
+    	if (name2[1].equals(names[0])) {
+    		total = s2;
+    	}
+    	if (name3[1].equals(names[0])) {
+    		total = s3;
+    	}
+        return total;
     }
 
     // Return the sum of all numerical digits in the String

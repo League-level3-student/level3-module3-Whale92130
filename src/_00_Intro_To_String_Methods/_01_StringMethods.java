@@ -1,5 +1,6 @@
 package _00_Intro_To_String_Methods;
 
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -45,11 +46,21 @@ public class _01_StringMethods {
 	// If String s contains the word "underscores", change all of the spaces
 	// to underscores
 	public static String formatSpaces(String s) {
+		char[] chars = s.toCharArray();
 		if (s.contains("underscores")) {
 			System.out.println("has underscores");
-			s.replace(' ', '_');
+			
+			for (int i = 0; i < chars.length; i++) {
+				if (chars[i] == ' ') {
+					chars[i] = '_';
+				}
+			}
 		}
-		return s;
+		String k = "";
+		for (int i = 0; i < chars.length; i++) {
+			k = k+chars[i];
+		}
+		return k;
 	}
 
 	// Return the name of the person whose LAST name would appear first if they
@@ -107,7 +118,11 @@ public class _01_StringMethods {
 	// Call Utilities.encrypt at the bottom of this file to encrypt String s
 	public static String encrypt(String s, char key) {
 		Utilities util = new Utilities();
-		// util.encrypt(s.getBytes(), );
+		Charset charset = Charset.forName("UTF-8");
+		String k = Character.toString(key);
+		byte[] bytes = k.getBytes();
+		byte by = bytes[0];
+		util.encrypt(s.getBytes(), by);
 		return null;
 	}
 
@@ -136,7 +151,6 @@ public class _01_StringMethods {
 	public static int distance(String s, String substring) {
 		int a = s.indexOf(substring);
 		int b = s.lastIndexOf(substring);
-		System.out.println(a + " " + b);
 		int total1 = a + substring.length();
 		int total2 = b;
 		return total2 - total1;
@@ -146,19 +160,19 @@ public class _01_StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		
+
 		String a = "";
 		String b = "";
 		char[] words = s.toCharArray();
 		char[] wordsRev = new char[words.length];
 		for (int i = 0; i < words.length; i++) {
-			wordsRev[i] = words[words.length-1 - i];
+			wordsRev[i] = words[words.length - 1 - i];
 		}
 		for (int o = 0; o < words.length; o++) {
-			 a = a+words[o];
+			a = a + words[o];
 		}
 		for (int p = 0; p < wordsRev.length; p++) {
-			 b = b+wordsRev[p];
+			b = b + wordsRev[p];
 		}
 		String total = s;
 		total = total.replace('.', ' ');

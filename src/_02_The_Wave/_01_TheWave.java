@@ -17,15 +17,36 @@ public class _01_TheWave {
 	 */
 
 	public static ArrayList<String> wave(String str) {
-
+		int count = 0;
+		ArrayList<String> waveWords = new ArrayList<String>();
 		char[] words = str.toCharArray();
+		String trimStr = str.trim();
+		int length = trimStr.length();
 		for (int i = 0; i < str.length(); i++) {
-			Character.toUpperCase(words[i]);
+			if (count == length) {
+				return waveWords;
+			}
+			if (words[i] == ' ') {
+				if (i - 1 >= 0) {
+					words[i - 1] = Character.toLowerCase(words[i - 1]);
+				}
+
+				i++;
+			}
+			if (i - 1 >= 0) {
+				words[i - 1] = Character.toLowerCase(words[i - 1]);
+			}
+			if (i < words.length) {
+			words[i] = Character.toUpperCase(words[i]);
+			count++;
+			
+			}
 			StringBuilder builder = new StringBuilder();
 			builder.append(words);
-			ArrayList<String> wave = new ArrayList<String>();
-			wave.add(builder.toString());
+			waveWords.add(builder.toString());
+			
 		}
-		return wave(str);
+		System.out.println(waveWords);
+		return waveWords;
 	}
 }

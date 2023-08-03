@@ -46,23 +46,26 @@ public class _01_StringMethods {
 	// If String s contains the word "underscores", change all of the spaces
 	// to underscores
 	public static String formatSpaces(String s) {
-		char[] chars = s.toCharArray();
 		if (s.contains("underscores")) {
-			System.out.println("has underscores");
-			
-			for (int i = 0; i < chars.length; i++) {
-				if (chars[i] == ' ') {
-					chars[i] = '_';
-				}
-			}
+			s = s.replace(' ', '_');
 		}
-		String k = "";
-		for (int i = 0; i < chars.length; i++) {
-			k = k+chars[i];
-		}
-		return k;
+		return s;
 	}
-
+	
+//	char[] chars = s.toCharArray();
+//	if (s.contains("underscores")) {
+//		System.out.println("has underscores");
+//		
+//		for (int i = 0; i < chars.length; i++) {
+//			if (chars[i] == ' ') {
+//				chars[i] = '_';
+//			}
+//		}
+//	}
+//	String k = "";
+//	for (int i = 0; i < chars.length; i++) {
+//		k = k+chars[i];
+//	}
 	// Return the name of the person whose LAST name would appear first if they
 	// were in alphabetical order.
 	// You cannot assume there are no extra spaces around the name, but you can
@@ -122,14 +125,18 @@ public class _01_StringMethods {
 		String k = Character.toString(key);
 		byte[] bytes = k.getBytes();
 		byte by = bytes[0];
-		util.encrypt(s.getBytes(), by);
-		return null;
+		return util.encrypt(s.getBytes(), by);
 	}
 
 	// Call Utilities.decrypt at the bottom of this file to decrypt the
 	// cyphertext (encrypted text)
 	public static String decrypt(String s, char key) {
-		return null;
+		Utilities util = new Utilities();
+		Charset charset = Charset.forName("UTF-8");
+		String k = Character.toString(key);
+		byte[] bytes = k.getBytes();
+		byte by = bytes[0];
+		return util.decrypt(s, by);
 	}
 
 	// Return the number of words in String s that end with String substring
@@ -163,6 +170,13 @@ public class _01_StringMethods {
 
 		String a = "";
 		String b = "";
+		s = s.replace('.', ' ');
+		s = s.replace(',', ' ');
+		s = s.replace(':', ' ');
+		s = s.replace('?', ' ');
+		s = s.replace('!', ' ');
+		s = s.replace('-', ' ');
+		s = s.trim();
 		char[] words = s.toCharArray();
 		char[] wordsRev = new char[words.length];
 		for (int i = 0; i < words.length; i++) {
@@ -174,13 +188,8 @@ public class _01_StringMethods {
 		for (int p = 0; p < wordsRev.length; p++) {
 			b = b + wordsRev[p];
 		}
-		String total = s;
-		total = total.replace('.', ' ');
-		total = total.replace(',', ' ');
-		total = total.replace(':', ' ');
-		total = total.replace('?', ' ');
-		total = total.replace('!', ' ');
-		total = total.trim();
+		a=a.replaceAll(" ", "");
+		b=b.replaceAll(" ", "");
 		System.out.println(a);
 		System.out.println(b);
 		if (a.equalsIgnoreCase(b)) {
